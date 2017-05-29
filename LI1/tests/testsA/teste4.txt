@@ -1,0 +1,6 @@
+aBbc
+bbCA
+aaDa
+
+1 0 N
+EDED

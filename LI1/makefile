@@ -1,0 +1,62 @@
+all: tarefa1 tarefa2 tarefa3 tarefa4 tarefa5 DOCS relatorio.pdf testsA testsB testsC testsD testsE
+
+tarefa1: SRC/tarefa1.hs
+	ghc SRC/tarefa1.hs
+
+tarefa2: SRC/tarefa2.hs
+	ghc SRC/tarefa2.hs
+
+tarefa3: SRC/tarefa3.hs
+	ghc SRC/tarefa3.hs
+
+tarefa4: SRC/tarefa4.hs
+	ghc SRC/tarefa4.hs       
+
+tarefa5: SRC/tarefa5.hs
+	ghc SRC/tarefa5.hs
+
+DOCS: docA docB docC docD docE
+
+docA: SRC/tarefa1.hs
+	haddock -h -o DOCS/TA SRC/tarefa1.hs
+
+docB: SRC/tarefa2.hs
+	haddock -h -o DOCS/TB SRC/tarefa2.hs
+
+docC: SRC/tarefa3.hs
+	haddock -h -o DOCS/TC SRC/tarefa3.hs
+
+docD: SRC/tarefa4.hs
+	haddock -h -o DOCS/TC SRC/tarefa4.hs
+
+docE: SRC/tarefa5.hs
+	haddock -h -o DOCS/TC SRC/tarefa5.hs
+
+relatorio.pdf: tex/relatorio.tex
+	pdflatex tex/relatorio.tex
+	pdflatex tex/relatorio.tex
+	pdflatex tex/relatorio.tex
+
+COUNT=0
+
+COUNTER=$((COUNT+=1))
+
+testsA :: tarefa1 
+	for a in tests/testsA/*.txt; do ./SRC/tarefa1 < $$a > tests/testsA/test$(value COUNTER).out; done
+
+testsB :: tarefa2
+	for b in tests/testsB/*.txt; do ./SRC/tarefa2 < $$b > tests/testsB/test$(value COUNTER).out; done
+
+testsC :: tarefa3
+	for c in tests/testsC/*.txt; do ./SRC/tarefa3 < $$c > tests/testsC/test$(value COUNTER).out; done
+
+testsD :: tarefa4
+	for d in tests/testsD/*.txt; do ./SRC/tarefa4 < $$d > tests/testsD/test$(value COUNTER).out; done
+
+testsE :: tarefa5
+	for e in tests/testsE/*.txt; do ./SRC/tarefa5 < $$e > tests/testsE/test$(value COUNTER).html; done 
+
+clean: 
+	rm -f *.aux *.log;
+	cd SRC; rm -f *.hi *.o
+	

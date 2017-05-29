@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Main</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+window.onload = function () {pageLoad();setSynopsis("mini_Main.html");};
+//]]>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Safe Haskell</th><td>Safe-Inferred</td></tr></table><p class="caption">Main</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Cont&#233;m fun&#231;&#245;es que detetam se o tabuleiro cont&#233;m erros de sintaxe 
+(ex: uma linha em branco, tabuleiro com digitos, ...).
+Caso ocorra algum erro de sintaxe &#233; retornado o valor da linha onde
+ocorre o primeiro erro. Caso contr&#225;rio &#233; devolvida a <em>String OK</em>.
+</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><a href="#v:main">main</a> :: IO ()</li><li class="src short"><a href="#v:process">process</a> :: [String] -&gt; String</li><li class="src short"><a href="#v:getBoard">getBoard</a> :: [String] -&gt; ([Int], Int, [String], [String])</li><li class="src short"><a href="#v:isBoard">isBoard</a> :: String -&gt; Int -&gt; Int</li><li class="src short"><a href="#v:isValidBoard">isValidBoard</a> :: Int -&gt; Int -&gt; [Int] -&gt; Int</li><li class="src short"><a href="#v:isVSintax">isVSintax</a> :: String -&gt; (Int, Int) -&gt; Bool</li><li class="src short"><a href="#v:countSpaces">countSpaces</a> :: String -&gt; Int</li><li class="src short"><a href="#v:isVCoord">isVCoord</a> :: String -&gt; Int -&gt; Bool</li><li class="src short"><a href="#v:iError">iError</a> :: String -&gt; Bool</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:main" class="def">main</a> :: IO ()</p><div class="doc"><p><code><a href="Main.html#v:main">main</a></code> recebe o <em>std input</em> de um ficheiro. 
+</p><p>Devolve a mensagem resultante da fun&#231;&#227;o <em>process</em>.
+</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;aaa\naaa\n0 0 S\nLASED&quot;
+</code></strong>OK
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;aaa\nbaa\n\n0 0 S\nLASED&quot;
+</code></strong>3
+</pre></div></div><div class="top"><p class="src"><a name="v:process" class="def">process</a> :: [String] -&gt; String</p><div class="doc"><p><code><a href="Main.html#v:process">process</a></code> executa todas as fun&#231;&#245;es necess&#225;rias para a 
+    valida&#231;&#227;o do tabuleiro,
+    da posi&#231;&#227;o inicial do <em>robot</em> e dos comandos que lhe ser&#227;o aplicados.
+    Executa cada uma delas sequencialmente, caso alguma falhe, a fun&#231;&#227;o
+    <em>process</em> termina devolvendo uma mensagem contento o n&#250;mero da linha do
+    ficheiro onde ocorreu o erro.
+</p></div></div><div class="top"><p class="src"><a name="v:getBoard" class="def">getBoard</a> :: [String] -&gt; ([Int], Int, [String], [String])</p><div class="doc"><p><code><a href="Main.html#v:getBoard">getBoard</a></code> separa o tabuleiro das coordenas e dos comandos.
+    Devolve tamb&#233;m a largura de cada linha do tabuleiro,
+    bem como a altura do tabuleiro.
+</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>[&quot;aaa&quot;,&quot;ba&quot;,&quot;1 0 S&quot;,&quot;LASDE&quot;]
+</code></strong>([3, 2], 2, [&quot;aaa&quot;, &quot;ba&quot;], [&quot;1 0 S&quot;, &quot;LASDE&quot;]
+</pre></div></div><div class="top"><p class="src"><a name="v:isBoard" class="def">isBoard</a> :: String -&gt; Int -&gt; Int</p><div class="doc"><p><code><a href="Main.html#v:isBoard">isBoard</a></code> testa se uma linha pertence ou n&#227;o ao tabuleiro
+    (se todos os seus car&#225;teres s&#227;o letras). 
+    Caso algum car&#225;ter n&#227;o seja uma letra &#233; devolvido o valor 0.
+    Caso contrario &#233; devolvido o valor da largura dessa linha.
+</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;aaa&quot;
+</code></strong>3
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;aa2&quot;
+</code></strong>0   
+</pre></div></div><div class="top"><p class="src"><a name="v:isValidBoard" class="def">isValidBoard</a> :: Int -&gt; Int -&gt; [Int] -&gt; Int</p><div class="doc"><p><code><a href="Main.html#v:isValidBoard">isValidBoard</a></code> testa se o tabulero &#233; valido 
+    (se todas as linhas t&#234;m a mesma largura).
+    Caso todas as linhas tenham a mesma largura &#233; devolvido o valor 0.
+    Caso contr&#225;rio &#233; devolvido o n&#250;mero da linha onde a condi&#231;&#227;o falhou.
+    O primeiro argumento recebido corresponde &#224; largura da primeira linha
+    do tabuleiro.
+</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>3 1 [3, 3, 4]
+</code></strong>3
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>3 1 [3, 3, 3]
+</code></strong>0 
+</pre></div></div><div class="top"><p class="src"><a name="v:isVSintax" class="def">isVSintax</a> :: String -&gt; (Int, Int) -&gt; Bool</p><div class="doc"><p><code><a href="Main.html#v:isVSintax">isVSintax</a></code> testa se as coordenadas s&#227;o v&#225;lidas.
+     Para isso &#233; necess&#225;rio: 
+</p><p>1 - que a <em>String</em> recebida contenha 2 espa&#231;os.
+</p><p>2 - que o tamanho da <em>words (String recebida)</em> seja 3.
+</p><p>3 - que a primeira e a segunda posi&#231;&#245;es da <em>words (String recebida)</em>
+	 sejam inteiros sem o seguinte formato (ex: 00001) e que a terceira
+	 posi&#231;&#227;o seja um car&#225;ter N, S, E ou O.
+</p><p>4 - que a primeira posi&#231;&#227;o da <em>words (String recebida)</em> seja menor que
+	 a (largura do tabuleiro - 1) e que a segunda posi&#231;&#227;o seja menor que
+	 a (altura do tabuleiro - 1).
+</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;1 0 S&quot; (2, 2)
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;0001 0 S&quot; (2, 2)
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;0 1 S&quot; (2, 1)
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:countSpaces" class="def">countSpaces</a> :: String -&gt; Int</p><div class="doc"><p><code><a href="Main.html#v:countSpaces">countSpaces</a></code> conta o n&#250;mero de espa&#231;os de uma <em>String</em>. 
+</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;1 0 S&quot;
+</code></strong>2
+</pre></div></div><div class="top"><p class="src"><a name="v:isVCoord" class="def">isVCoord</a> :: String -&gt; Int -&gt; Bool</p><div class="doc"><p><code><a href="Main.html#v:isVCoord">isVCoord</a></code> testa se uma coordenada x ou y s&#227;o v&#225;lidas.
+     Caso sejam inteiros e n&#227;o estejam no seguinte formato (ex: 00001).
+</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;10&quot;
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;0&quot;
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;a&quot;
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;01&quot;
+</code></strong>False 
+</pre></div></div><div class="top"><p class="src"><a name="v:iError" class="def">iError</a> :: String -&gt; Bool</p><div class="doc"><p><code><a href="Main.html#v:iError">iError</a></code> testa se os comandos se encontram na sintaxe v&#225;lida, ou seja,
+     se todos os car&#225;teres da <em>String</em> recebida t&#234;m os seguintes valores:
+     L, A, S, D ou E.
+</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;LAS&quot;
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>&quot;As&quot;
+</code></strong>False
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.13.2</p></div></body></html>

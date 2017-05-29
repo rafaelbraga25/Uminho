@@ -1,0 +1,194 @@
+<html>
+	<head>
+		<title>Lightbot</title>
+		<script type="text/javascript" src="http://www.x3dom.org/x3dom/release/x3dom.js"> </script>
+		<link rel="stylesheet" type="text/css" href="http://x3dom.org/x3dom/release/x3dom.css"></link>
+	</head>
+	<style>
+		body {
+			background-color: #878686;
+		}
+		x3d {
+			height: 90%;
+			width: 100%;
+			border: 0px solid #878686;
+		}
+		center {
+			height: 10%;
+			font-size: 50px;
+			color: #FFFFFF;
+			font-weight: bold;
+			font-family: Courier;
+		}
+	</style>
+	<body>
+		<center> Lightbot </center>
+		<x3d>
+			<scene>
+				<group render="false">
+					<shape def="block">
+						<appearance>
+							<material diffuseColor="0.4 0.7 1"></material>
+						</appearance>
+						<box size="0.5 0.225 0.5"></box>
+					</shape>
+				</group>
+				<transform translation="-1.0 0.5 -1.0"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-0.47500002 0.5 -1.0"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="4.9999952e-2 0.5 -1.0"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="0.5749999 0.5 -1.0"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-1.0 0.5 -0.47500002"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-0.47500002 0.5 -0.47500002"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="4.9999952e-2 0.5 -0.47500002"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="0.5749999 0.5 -0.47500002"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-1.0 0.5 4.9999952e-2"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-0.47500002 0.5 4.9999952e-2"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="4.9999952e-2 0.5 4.9999952e-2"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="0.5749999 0.5 4.9999952e-2"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-1.0 0.5 0.5749999"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-0.47500002 0.5 0.5749999"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="4.9999952e-2 0.5 0.5749999"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="0.5749999 0.5 0.5749999"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform def="bot">
+					<transform translation="0 0.735 0" def="head">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<sphere radius=".14"></sphere>
+						</shape>
+					</transform>
+					<transform translation="0 0.9 0" def="antenna">
+						<shape>
+							<appearance>
+								<material diffuseColor="0 0 0"></material>
+							</appearance>
+							<box size=".01 .15 .01"></box>
+						</shape>
+					</transform>
+					<transform translation="0 1 0" def="antennaLight">
+						<shape>
+							<appearance>
+								<material def="antennaColor" diffuseColor="0.6 0.86 0.97"></material>
+							</appearance>
+							<sphere radius=".04"></sphere>
+						</shape>
+					</transform>
+					<transform translation="0.05 0.75 -0.12" def="rightEye">
+						<shape>
+							<appearance>
+								<material diffuseColor="1 1 1"></material>
+							</appearance>
+							<sphere radius=".045"></sphere>
+						</shape>
+					</transform>
+					<transform translation="-0.05 0.75 -0.12" def="leftEye">
+						<shape>
+							<appearance>
+								<material diffuseColor="1 1 1"></material>
+							</appearance>
+							<sphere radius=".045"></sphere>
+						</shape>
+					</transform>
+					<transform translation="0 0.535 0" def="body">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<cylinder radius=".1" height=".3"></cylinder>
+						</shape>
+					</transform>
+					<transform translation="0.05 0.34 0" def="rightLeg">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<box size=".05 .4 .05"></box>
+						</shape>
+					</transform>
+					<transform translation="-0.05 0.34 0" def="leftLeg">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<box size=".05 .4 .05"></box>
+						</shape>
+					</transform>
+					<transform translation="-0.11 0.485 0" def="leftArm">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<box size=".05 .25 .05"></box>
+						</shape>
+					</transform>
+					<transform translation="0.11 0.485 0" def="rightArm">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<box size=".05 .25 .05"></box>
+						</shape>
+					</transform>
+				</transform>
+				<timeSensor def="clock" cycleInterval="0.75" loop="true"></timeSensor>
+				<positionInterpolator def="moveRobot" key="1" keyValue="-0.47500002 0.5 0.5749999"></positionInterpolator>
+				<route fromNode="clock" toNode="moveRobot" fromField="fraction_changed" toField="set_fraction"></route>
+				<route fromNode="moveRobot" toNode="bot" fromField="value_changed" toField="translation"></route>
+
+
+
+				<orientationInterpolator def="rotate" key="1" keyValue="0 1 0 0.0"></orientationInterpolator>
+				<route fromNode="clock" toNode="rotate" fromField="fraction_changed" toField="set_fraction"></route>
+				<route fromNode="rotate" toNode="bot" fromField="value_changed" toField="set_rotation"></route>
+
+
+				<orientationInterpolator def="rotateLeftLeg" key="0.0 1" keyValue="1 0 0 0  1 0 0 0  "></orientationInterpolator>
+<route fromNode="clock" toNode="rotateLeftLeg" fromField="fraction_changed" toField="set_fraction"> </route>
+<route fromNode="rotateLeftLeg" toNode="leftLeg" fromField="value_changed" toField="set_rotation"> </route>
+
+
+				<orientationInterpolator def="rotateRightLeg" key="0.0 1" keyValue="1 0 0 0  1 0 0 0  "></orientationInterpolator>
+<route fromNode="clock" toNode="rotateRightLeg" fromField="fraction_changed" toField="set_fraction"> </route>
+<route fromNode="rotateRightLeg" toNode="rightLeg" fromField="value_changed" toField="set_rotation"> </route>
+
+
+				<colorInterpolator def="colorA" key="1" keyValue="0.6 0.86 0.97"></colorInterpolator>
+				<route fromNode="clock" toNode="colorA" fromField="fraction_changed" toField="set_fraction"></route>
+				<route fromNode="colorA" toNode="antennaColor" fromField="value_changed" toField="diffuseColor"></route>
+			</scene>
+		</x3d>
+	</body>
+</html>

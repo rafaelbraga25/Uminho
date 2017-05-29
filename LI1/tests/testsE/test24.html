@@ -1,0 +1,202 @@
+<html>
+	<head>
+		<title>Lightbot</title>
+		<script type="text/javascript" src="http://www.x3dom.org/x3dom/release/x3dom.js"> </script>
+		<link rel="stylesheet" type="text/css" href="http://x3dom.org/x3dom/release/x3dom.css"></link>
+	</head>
+	<style>
+		body {
+			background-color: #878686;
+		}
+		x3d {
+			height: 90%;
+			width: 100%;
+			border: 0px solid #878686;
+		}
+		center {
+			height: 10%;
+			font-size: 50px;
+			color: #FFFFFF;
+			font-weight: bold;
+			font-family: Courier;
+		}
+	</style>
+	<body>
+		<center> Lightbot </center>
+		<x3d>
+			<scene>
+				<group render="false">
+					<shape def="block">
+						<appearance>
+							<material diffuseColor="0.4 0.7 1"></material>
+						</appearance>
+						<box size="0.5 0.225 0.5"></box>
+					</shape>
+				</group>
+				<transform translation="-1.0 0.5 -1.0"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-0.47500002 0.5 -1.0"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="4.9999952e-2 0.5 -1.0"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="0.5749999 0.5 -1.0"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-1.0 0.5 -0.47500002"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-0.47500002 0.5 -0.47500002"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="4.9999952e-2 0.5 -0.47500002"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="0.5749999 0.5 -0.47500002"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-1.0 0.5 4.9999952e-2"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-0.47500002 0.5 4.9999952e-2"> 
+					<shape>
+						<appearance>
+							<material def="-0.475_5.0e-2" diffuseColor="0.6 0.86 0.97"></material>
+						</appearance>
+						<box size="0.5 0.225 0.5"></box>
+					</shape>
+				</transform>
+				<transform translation="4.9999952e-2 0.5 4.9999952e-2"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="0.5749999 0.5 4.9999952e-2"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-1.0 0.5 0.5749999"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="-0.47500002 0.5 0.5749999"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="4.9999952e-2 0.5 0.5749999"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform translation="0.5749999 0.5 0.5749999"> 
+					<shape use="block"></shape>
+				</transform>
+ 				<transform def="bot">
+					<transform translation="0 0.735 0" def="head">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<sphere radius=".14"></sphere>
+						</shape>
+					</transform>
+					<transform translation="0 0.9 0" def="antenna">
+						<shape>
+							<appearance>
+								<material diffuseColor="0 0 0"></material>
+							</appearance>
+							<box size=".01 .15 .01"></box>
+						</shape>
+					</transform>
+					<transform translation="0 1 0" def="antennaLight">
+						<shape>
+							<appearance>
+								<material def="antennaColor" diffuseColor="0.6 0.86 0.97"></material>
+							</appearance>
+							<sphere radius=".04"></sphere>
+						</shape>
+					</transform>
+					<transform translation="0.05 0.75 -0.12" def="rightEye">
+						<shape>
+							<appearance>
+								<material diffuseColor="1 1 1"></material>
+							</appearance>
+							<sphere radius=".045"></sphere>
+						</shape>
+					</transform>
+					<transform translation="-0.05 0.75 -0.12" def="leftEye">
+						<shape>
+							<appearance>
+								<material diffuseColor="1 1 1"></material>
+							</appearance>
+							<sphere radius=".045"></sphere>
+						</shape>
+					</transform>
+					<transform translation="0 0.535 0" def="body">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<cylinder radius=".1" height=".3"></cylinder>
+						</shape>
+					</transform>
+					<transform translation="0.05 0.34 0" def="rightLeg">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<box size=".05 .4 .05"></box>
+						</shape>
+					</transform>
+					<transform translation="-0.05 0.34 0" def="leftLeg">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<box size=".05 .4 .05"></box>
+						</shape>
+					</transform>
+					<transform translation="-0.11 0.485 0" def="leftArm">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<box size=".05 .25 .05"></box>
+						</shape>
+					</transform>
+					<transform translation="0.11 0.485 0" def="rightArm">
+						<shape>
+							<appearance>
+								<material diffuseColor=".5714 .5714 .5714"></material>
+							</appearance>
+							<box size=".05 .25 .05"></box>
+						</shape>
+					</transform>
+				</transform>
+				<timeSensor def="clock" cycleInterval="18.0" loop="true"></timeSensor>
+				<positionInterpolator def="moveRobot" key="0.0 4.347826e-2 8.695652e-2 0.13043478 0.17391305 0.21739131 0.26086956 0.3043478 0.34782606 0.3913043 0.43478256 0.47826082 0.52173907 0.5652173 0.60869557 0.6521738 0.69565207 0.7391303 0.78260857 0.8260868 0.86956507 0.9130433 0.9565216 1" keyValue="-0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.75 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.75 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.75 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 0.5749999  -0.47500002 0.5 4.9999952e-2  -0.47500002 0.5 4.9999952e-2"></positionInterpolator>
+				<route fromNode="clock" toNode="moveRobot" fromField="fraction_changed" toField="set_fraction"></route>
+				<route fromNode="moveRobot" toNode="bot" fromField="value_changed" toField="translation"></route>
+
+
+
+				<orientationInterpolator def="rotate" key="0.0 4.347826e-2 8.695652e-2 0.13043478 0.17391305 0.21739131 0.26086956 0.3043478 0.34782606 0.3913043 0.43478256 0.47826082 0.52173907 0.5652173 0.60869557 0.6521738 0.69565207 0.7391303 0.78260857 0.8260868 0.86956507 0.9130433 0.9565216 1" keyValue="0 1 0 0.0  0 1 0 -1.5707964  0 1 0 -3.1415927  0 1 0 -4.712389  0 1 0 -6.2831855  0 1 0 -4.712389  0 1 0 -3.1415925  0 1 0 -1.5707961  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7  0 1 0 2.3841858e-7"></orientationInterpolator>
+				<route fromNode="clock" toNode="rotate" fromField="fraction_changed" toField="set_fraction"></route>
+				<route fromNode="rotate" toNode="bot" fromField="value_changed" toField="set_rotation"></route>
+
+
+				<orientationInterpolator def="rotateLeftLeg" key="0.0 2.1276595e-2 4.255319e-2 6.382979e-2 8.510638e-2 0.10638297 0.12765957 0.14893617 0.17021276 0.19148935 0.21276595 0.23404254 0.25531915 0.27659574 0.29787233 0.31914893 0.34042552 0.3617021 0.3829787 0.4042553 0.4255319 0.4468085 0.46808508 0.48936167 0.5106383 0.5319149 0.5531915 0.5744681 0.59574467 0.61702126 0.63829786 0.65957445 0.68085104 0.70212764 0.7234042 0.7446808 0.7659574 0.787234 0.8085106 0.8297872 0.8510638 0.8723404 0.893617 0.91489357 0.93617016 0.95744675 0.97872335 1" keyValue="1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 -0.2  1 0 0 0.2  1 0 0 0  1 0 0 0  "></orientationInterpolator>
+<route fromNode="clock" toNode="rotateLeftLeg" fromField="fraction_changed" toField="set_fraction"> </route>
+<route fromNode="rotateLeftLeg" toNode="leftLeg" fromField="value_changed" toField="set_rotation"> </route>
+
+
+				<orientationInterpolator def="rotateRightLeg" key="0.0 2.1276595e-2 4.255319e-2 6.382979e-2 8.510638e-2 0.10638297 0.12765957 0.14893617 0.17021276 0.19148935 0.21276595 0.23404254 0.25531915 0.27659574 0.29787233 0.31914893 0.34042552 0.3617021 0.3829787 0.4042553 0.4255319 0.4468085 0.46808508 0.48936167 0.5106383 0.5319149 0.5531915 0.5744681 0.59574467 0.61702126 0.63829786 0.65957445 0.68085104 0.70212764 0.7234042 0.7446808 0.7659574 0.787234 0.8085106 0.8297872 0.8510638 0.8723404 0.893617 0.91489357 0.93617016 0.95744675 0.97872335 1" keyValue="1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0  1 0 0 0.2  1 0 0 -0.2  1 0 0 0  1 0 0 0  "></orientationInterpolator>
+<route fromNode="clock" toNode="rotateRightLeg" fromField="fraction_changed" toField="set_fraction"> </route>
+<route fromNode="rotateRightLeg" toNode="rightLeg" fromField="value_changed" toField="set_rotation"> </route>
+
+
+				<colorInterpolator def="colorA" key="0.0 4.347826e-2 8.695652e-2 0.13043478 0.17391305 0.21739131 0.26086956 0.3043478 0.34782606 0.3913043 0.43478256 0.47826082 0.52173907 0.5652173 0.60869557 0.6521738 0.69565207 0.7391303 0.78260857 0.8260868 0.86956507 0.9130433 0.9565216 1" keyValue="0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  1 1 0  1 1 0  1 1 0  0.6 0.86 0.97  0.6 0.86 0.97  1 1 0  1 1 0  0.6 0.86 0.97  0.6 0.86 0.97  1 1 0  0.6 0.86 0.97  0.6 0.86 0.97  1 1 0  0.6 0.86 0.97  1 1 0"></colorInterpolator>
+				<route fromNode="clock" toNode="colorA" fromField="fraction_changed" toField="set_fraction"></route>
+				<route fromNode="colorA" toNode="antennaColor" fromField="value_changed" toField="diffuseColor"></route>
+				<colorInterpolator def="color-0.475_5.0e-2" key="0.0 4.347826e-2 8.695652e-2 0.13043478 0.17391305 0.21739131 0.26086956 0.3043478 0.34782606 0.3913043 0.43478256 0.47826082 0.52173907 0.5652173 0.60869557 0.6521738 0.69565207 0.7391303 0.78260857 0.8260868 0.86956507 0.9130433 0.9565216 1" keyValue="0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  0.6 0.86 0.97  1 1 0"></colorInterpolator>
+				<route fromNode="clock" toNode="color-0.475_5.0e-2" fromField="fraction_changed" toField="set_fraction"></route>
+				<route fromNode="color-0.475_5.0e-2" toNode="-0.475_5.0e-2" fromField="value_changed" toField="diffuseColor"></route>
+			</scene>
+		</x3d>
+	</body>
+</html>
