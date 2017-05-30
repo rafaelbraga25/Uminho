@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=errorMessage\ newMessage
+comment0.target=java.lang.String\ lerString(java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ M\u00E9todos\ de\ Classe\r\n
+comment1.params=errorMessage\ newMessage
+comment1.target=int\ lerInt(java.lang.String,\ java.lang.String)
+comment2.params=errorMessage\ newMessage
+comment2.target=double\ lerDouble(java.lang.String,\ java.lang.String)
+comment3.params=errorMessage\ newMessage
+comment3.target=float\ lerFloat(java.lang.String,\ java.lang.String)
+comment4.params=errorMessage\ newMessage
+comment4.target=boolean\ lerBoolean(java.lang.String,\ java.lang.String)
+comment5.params=errorMessage\ newMessage
+comment5.target=short\ lerShort(java.lang.String,\ java.lang.String)
+comment6.params=errorMessage\ message
+comment6.target=java.util.GregorianCalendar\ lerData(java.lang.String,\ java.lang.String)
+comment6.text=\r\n\ Este\ m\u00E9todo\ tenta,\ sucessivamente,\ ler\ uma\ data\ v\u00E1lida,\ devolvendo-a\ no\ final\ da\ execu\u00E7\u00E3o.\r\n\ \r\n\ @param\ errorMessage\ Mensagem\ a\ apresentar\ em\ caso\ de\ erro.\r\n\ @param\ message\ \ \ \ \ \ Mensagem\ a\ apresentar\ para\ a\ obten\u00E7\u00E3o\ de\ uma\ nova\ data.\r\n\ @return\ date\ \ \ \ \ \ \ \ Devolve\ a\ data\ lida.\r\n\ \r\n\ @author\ Ana\ Paula\ Carvalho\r\n\ @author\ Jo\u00E3o\ Pires\ Barreira\r\n\ @author\ Rafael\ Braga\r\n
+numComments=7

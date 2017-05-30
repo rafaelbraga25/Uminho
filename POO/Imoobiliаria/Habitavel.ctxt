@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=int\ getNumQuartos()
+comment0.text=\r\n\ @return\ Devolve\ o\ campo\ "numQuartos"\ de\ um\ im\u00F3vel\ habit\u00E1vel.\r\n
+comment1.params=
+comment1.target=int\ getNumWCs()
+comment1.text=\r\n\ @return\ Devolve\ o\ campo\ "numWCs"\ de\ um\ im\u00F3vel\ habit\u00E1vel.\r\n
+comment2.params=
+comment2.target=int\ getNumPorta()
+comment2.text=\r\n\ @return\ Devolve\ o\ campo\ "numPorta"\ de\ um\ im\u00F3vel\ habit\u00E1vel.\r\n
+comment3.params=numQuartos
+comment3.target=void\ setNumQuartos(int)
+comment3.text=\r\n\ Altera\ o\ valor\ do\ campo\ "numQuartos"\ de\ um\ im\u00F3vel\ habit\u00E1vel.\r\n
+comment4.params=numWCs
+comment4.target=void\ setNumWCs(int)
+comment4.text=\r\n\ Altera\ o\ valor\ do\ campo\ "numWCs"\ de\ um\ im\u00F3vel\ habit\u00E1vel.\r\n
+comment5.params=numPorta
+comment5.target=void\ setNumPorta(int)
+comment5.text=\r\n\ Altera\ o\ valor\ do\ campo\ "numPorta"\ de\ um\ im\u00F3vel\ habit\u00E1vel.\r\n
+numComments=6
