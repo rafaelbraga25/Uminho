@@ -1,0 +1,22 @@
+<scene>
+	<group>
+		<translate x=3/>
+		<scale x=1 y=2 Z=2/>
+		<models>
+			<model FILE="demos/sphere.3d" diffr=1/>
+			<model file="demos/ring.3d"/>
+		</models>
+	</group>
+	<group>
+		<translate x = -3/>
+		<scale X=1 Y=0.5 z=1.5/>
+		<models>
+			<model FilE="demos/sphere.3d" diffG=1/>
+		</models>
+	</group>
+</scene>
+
+
+
+
+

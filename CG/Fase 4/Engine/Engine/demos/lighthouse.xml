@@ -1,0 +1,90 @@
+<scene>
+	<translate z=25 y=-3/>
+	<group>
+		<rotate axisY=1 time=5/>
+		<lights>
+			<light posy=10 type="spot" cutoff=45 exponent=128/>
+		</lights>
+		<group>
+			<translate y=5/>
+			<scale y=0.1 x=0.1 z=0.1/>
+			<models>
+				<model file="demos/sphere.3d" emisr=1 emisb=1 emisg=1/>
+			</models>
+		</group>
+		<group>
+			<translate y=5 z=0.25/>
+			<scale y=0.18 x=0.18 z=0.18/>
+			<models>
+				<model file="demos/sphere.3d" emisg=0 emisb=0 emisr=0/>
+			</models>
+		</group>
+	</group>
+	<group>
+		<models>
+			<model file="demos/cone.3d" rand=30 xzmaxr=51 xzminr=50 texture="demos/mountain.jpg" ambtr=0.8 ambtg=0.8 ambtb=0.8/>
+		</models>
+	</group>
+	<group>
+		<translate y=-5/>
+		<models>
+			<model file="demos/plane.3d" texture="demos/sea.jpg" emisg=0.3 emisb=0.3 emisr=0.3/>
+		</models>
+	</group>
+	<group>
+		<translate y=-2.5/>
+		<scale x=0.2 z=0.2 y=0.5/>
+		<models>
+			<model file="demos/cone.3d" texture="demos/lighthouse.jpg" ambtr=0.9 ambtb=0.9 ambtg=0.9/>
+		</models>
+	</group>
+	<group>
+		<translate y=4.4/>
+		<scale x=0.3 y=0.05 z=0.2/>
+		<models>
+			<model file="demos/box.3d" texture="demos/lighthousetop.jpg" ambtr=0.9 ambtb=0.9 ambtg=0.9/>
+		</models>
+	</group>
+	<group>
+		<translate y=4.9 z=-0.55 x=-0.55/>
+		<scale x=0.01 y=0.18 z=0.01/>
+			<models>
+				<model file="demos/box.3d" texture="demos/lighthousetop.jpg" ambtr=0.9 ambtb=0.9 ambtg=0.9/>
+			</models>
+	</group>
+	<group>
+		<translate y=4.9 z=0.55 x=0.55/>
+		<scale x=0.01 y=0.18 z=0.01/>
+			<models>
+				<model file="demos/box.3d" texture="demos/lighthousetop.jpg" ambtr=0.9 ambtb=0.9 ambtg=0.9/>
+			</models>
+	</group>
+	<group>
+		<translate y=4.9 z=-0.55 x=0.55/>
+		<scale x=0.01 y=0.18 z=0.01/>
+			<models>
+				<model file="demos/box.3d" texture="demos/lighthousetop.jpg" ambtr=0.9 ambtb=0.9 ambtg=0.9/>
+			</models>
+	</group>
+	<group>
+		<translate y=4.9 z=0.55 x=-0.55/>
+		<scale x=0.01 y=0.18 z=0.01/>
+			<models>
+				<model file="demos/box.3d" texture="demos/lighthousetop.jpg" ambtr=0.9 ambtb=0.9 ambtg=0.9/>
+			</models>
+	</group>
+	<group>
+		<translate y=5.4/>
+		<scale x=0.3 y=0.05 z=0.2/>
+		<models>
+			<model file="demos/box.3d" texture="demos/lighthousetop.jpg" ambtr=0.9 ambtb=0.9 ambtg=0.9/>
+		</models>
+	</group>
+	<group>
+		<translate y=5.6/>
+		<scale x=0.02 z=0.02 y=0.05/>
+		<models>
+			<model file="demos/cone.3d" texture="demos/lighthousetop.jpg" ambtr=0.9 ambtb=0.9 ambtg=0.9/>
+		</models>
+	</group>
+</scene>

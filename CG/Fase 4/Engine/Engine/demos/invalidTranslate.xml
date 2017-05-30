@@ -1,0 +1,14 @@
+<scene>
+	<group>
+		<translate x=1/>
+		<models>
+			<model file="demos/box.3d"/>
+		</models>
+		<group>
+			<translate w=4/>
+			<models>
+				<model file="demos/cone.3d"/>
+			</models>
+		</group>
+	</group>
+</scene>

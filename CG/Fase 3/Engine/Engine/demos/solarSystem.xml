@@ -1,0 +1,113 @@
+<scene>
+	<group>
+		<rotate axisY=1 time=10/>
+		<scale x=2 y=2 z=2/>
+		<models>
+			<model file="demos/sphere.3d" diffR=1 diffG=0.2 diffB=0.2/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=1 time=1.2/>
+		<translate z=-5/>
+		<scale x=0.1 y=0.1 z=0.1/>
+		<models>
+			<model file="demos/sphere.3d" diffR=0.37 diffG=0.37 diffB=0.37/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=-1 time=3.15/>
+		<translate z=-10/>
+		<scale x=0.3 y=0.3 z=0.3/>
+		<models>
+			<model file="demos/sphere.3d" diffR=0.8 diffG=0.4/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=1 time=5/>
+		<translate z=-15/>
+		<scale x=0.3 y=0.3 z=0.3/>
+		<models>
+			<model file="demos/sphere.3d" diffB=1/>
+		</models>
+		<group>
+			<rotate angle=-35 axisX=1/>
+			<translate z=2.7/>
+			<scale x=0.15 y=0.15 z=0.15/>
+			<models>
+				<model file="demos/sphere.3d"/>
+			</models>
+		</group>
+	</group>
+	<group>
+		<rotate axisY=1 time=9.65/>
+		<translate z=-18/>
+		<scale x=0.3 y=0.3 z=0.3/>
+		<models>
+			<model file="demos/sphere.3d" diffR=1/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=1 time=10/>
+		<models>
+			<model file="demos/asteroid.3d" diffR=0.4 diffG=0.2 diffB=0 rand=1000 xzMinR=20 xzMaxR=22 yMaxR=1/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=1 time=59.5/>
+		<translate z=-28/>
+		<models>
+			<model file="demos/sphere.3d" diffR=1 diffG=0.8 diffB=0.6/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=1 time=147.5/>
+		<translate z=-33/>
+		<scale x=0.8 y=0.8 z=0.8/>
+		<group>
+			<scale x=0.4 y=0.4 z=0.4/>
+			<models>
+				<model file="demos/asteroid.3d" diffR=0.878 diffG=0.878 diffB=0.878 rand=500 xzMaxR=8.125 xzMinR=7.25/>
+				<model file="demos/asteroid.3d" diffR=0.878 diffG=0.878 diffB=0.878 rand=500 xzMaxR=9  xzMinR=8.5/>
+			</models>
+		</group>
+		<models>
+			<model file="demos/sphere.3d" diffR=1 diffG=1 diffB=0.8/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=1 time=420/>
+		<translate z=-38/>
+		<scale x=0.6 y=0.6 z=0.6/>
+		<models>
+			<model file="demos/sphere.3d" diffG=1 diffB=1/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=1 time=825/>
+		<translate z=-43/>
+		<scale x=0.6 y=0.6 z=0.6/>
+		<models>
+			<model file="demos/sphere.3d" diffG=0.4 diffB=0.8/>
+		</models>
+	</group>
+	<group>
+		<rotate axisY=1 time=1000/>
+		<translate z=-48/>
+		<scale x=0.05 y=0.05 z=0.05/>
+		<models>
+			<model file="demos/sphere.3d" diffR=0.25 diffG=0.25 diffB=0.25/>
+		</models>
+	</group>
+	<group>
+		<translate time=10>
+			<point x=5 y=1 z=20/>
+			<point x=10 y=3 z =10/> 
+			<point x=15 y=5 z=5/>
+			<point x=10 y=10 z=10/>			
+		</translate>
+		<scale x=0.4 y = 0.4 z = 0.4/>
+		<models>
+			<model file="demos/teapot.3d"/>
+		</models>
+	</group>
+</scene>

@@ -1,0 +1,7 @@
+<scene> 
+	<model file="demos/sphere.3d" /> 
+	<model file="demos/plane.3d" /> 
+	<model file="demos/box.3d" />
+	<model file="demos/boxdiv.3d"/>
+	<model file="demos/cone.3d"/>
+</scene>

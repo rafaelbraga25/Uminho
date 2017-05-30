@@ -1,0 +1,5 @@
+<scene> 
+	<models>
+		<model file="demos/cone.3d"/>
+	</models>
+</scene>

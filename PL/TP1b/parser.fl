@@ -1,0 +1,107 @@
+%option noyywrap
+%x TEMPLATE PARAMS VARS
+
+%{
+	#include <glib.h>
+
+
+	#define MAX_LINES 1000
+	#define LINE_SIZE 1024
+
+
+	FILE* fp;	
+	int numVars = 0;
+	int size = 0;
+	char array[MAX_LINES][LINE_SIZE];
+	char line[LINE_SIZE];
+%}
+
+%%
+	fp = fopen("template.c", "w");
+
+<*>^[a-zA-Z]+\=\{\{ {
+	int i = 0;
+
+	fprintf(fp, "char* ");
+
+	for (; i < yyleng && yytext[i] != '='; i++) {
+		fprintf(fp, "%c", yytext[i]);
+	}
+
+	fprintf(fp, "(");
+
+	BEGIN TEMPLATE;
+}
+
+<TEMPLATE>\[ {
+	BEGIN PARAMS;
+}
+
+<TEMPLATE>\}\} {
+	int i = 0;
+
+	fprintf(fp, ")\n{\n");
+	fprintf(fp, "\tchar BUF[10000];\n\tint j = 0;\n");
+
+	for (; i < size; i++) {
+		fprintf(fp, "\tj += sprintf(BUF + j, \"%s\\n\");\n", array[i]);
+	}
+
+	fprintf(fp, "\tstrdup(BUF);\n}\n");
+	numVars = 0;
+	size = 0;
+
+	BEGIN INITIAL;
+}
+
+<TEMPLATE>^[ \t]*[a-zA-Z0-9<> /]+ {
+	strcat(line, yytext);
+}
+
+<TEMPLATE>[ \t]*[a-zA-Z0-9<> /]+$ {
+	if (line[0] != '\0') {
+		strcat(line, "%s");
+	}
+	
+	strcat(line, yytext);
+	strcpy(array[size++], line);
+	line[0] = '\0';
+}
+
+<TEMPLATE>[ \t]*[a-zA-Z0-9<> /]+ {
+	strcat(line, yytext);
+}
+
+<PARAMS>"% " {
+	BEGIN VARS;
+} 
+
+<VARS>"%]" {
+	BEGIN TEMPLATE;
+}
+
+<VARS>[a-zA-Z]+ {
+	if (numVars > 0) {
+		fprintf(fp, ", ");
+	}
+
+	fprintf(fp, "char* ");
+	fprintf(fp, "%s", yytext);
+	numVars++;
+}
+
+.|\n { fprintf(fp, "%s", yytext);}
+
+%%
+
+int main(int argc, char** argv)
+{
+	if (argc == 2) {
+		yyin = fopen(argv[1], "r");
+		yylex();
+	}
+
+	fclose(fp);
+
+	return 0;
+}

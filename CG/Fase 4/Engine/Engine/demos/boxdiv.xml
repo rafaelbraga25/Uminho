@@ -1,0 +1,6 @@
+<scene> 
+	<translate z=15/>
+	<models>
+		<model file="demos/boxdiv.3d"/>
+	</models>
+</scene>

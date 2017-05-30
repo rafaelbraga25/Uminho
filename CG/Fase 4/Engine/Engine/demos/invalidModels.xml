@@ -1,0 +1,25 @@
+<scene>
+	<group>
+		<rotate angle=4 axisx=1/>
+		<scale x=3/>
+		<models>
+			<model file="demos/box.3d"/>
+		</models>
+	</group>
+	<group>
+		<translate z=10/>
+		<models>
+			<model file="demos/sphere.3d"/>
+			<model file="demos/plane.3d"/>
+		</models>
+		<group>
+			<rotate angle=40 axisy=1/>
+			<models>
+				<model file="demos/cone.3d"/>
+			</models>
+		</group>
+		<models>
+			<model file="demos/boxdiv.3d"/>
+		</models>
+	</group>
+</scene>

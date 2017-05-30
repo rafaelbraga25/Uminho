@@ -1,0 +1,18 @@
+<scene> 
+	<group> 
+		<translate X=5 Y=0 Z=2 /> 
+		<group> 
+			<translate Y=1 /> 
+			<models> 
+				<model file="demos/cone.3d"/> 
+			</models> 
+		</group> 
+		<translate X=5 Y=0 Z=2 /> 
+		<group> 
+			<translate X=1 /> 
+			<models> 
+				<model file="demos/cone.3d"/> 
+			</models> 
+		</group> 
+	</group> 
+</scene> 

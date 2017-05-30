@@ -1,0 +1,385 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\setlength{\parindent}{6ex}
+\usepackage{graphicx}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue},
+  tabsize=3
+}
+\title{\textbf{Processamento de Linguagens - TP1b}}
+\author{\begin{tabular}{c}
+            \textbf{} Carlos Pereira (A61887) \\ João Barreira (A73831) \\ Rafael Costa (A61799)
+        \end{tabular}
+       }
+\date{Abril 2017}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\renewcommand*\contentsname{Índice}
+
+\tableofcontents
+
+
+
+\newpage
+\section{Introdução}
+
+O presente trabalho consiste no desenvolvimento de filtros de texto recorrendo à ferramenta \emph{Flex}. Os diferentes filtros devem ser produzidos com o recurso a \emph{Expressões Regulares} para detetar \emph{padrões de frases}. Para aumentar estas capacidades, foram propostos um conjunto de exercícios. Neste trabalho, optou-se por resolver o exercício seis, pois apresenta uma complexidade considerável e, para além disso, achamos interessante aumentar as capacidades da linguagem em \emph{C} visto ser bastante utilizada na nossa área.
+
+Ao longo deste relatório explicaremos, com detalhe, a resolução deste exercício, dando ênfase às \emph{Expressões Regulares} e \emph{Ações Semânticas}, bem como eventuais estruturas e variáveis auxiliares utilizadas. No final apresentaremos também o filtro de texto desenvolvido e exemplos da sua execução.
+
+
+
+\newpage
+\section{Inline Templates em linguagem C}
+
+Um template embedido em linguagem C contém, tipicamente, texto com várias variáveis e expressões.
+
+De acordo com esta informação, foi desenvolvido um program em \emph{Flex} que dado um ficheiro de template, gera, em C, um programa correspondente válido.
+
+
+\subsection{Expressões Regulares e Ações Semânticas}
+
+\begin{itemize}
+    \item \textbf{\^{}[a-zA-Z]+\textbackslash{}=\textbackslash{}\{\textbackslash{}\{} -- Esta expressão é usada para extrair tudo o que se encontra antes do corpo de um \emph{template} (e.g. "Fli" e "Fhtml" na \textbf{Figura 1}) presentes no template. Desta forma, imprime-se no ficheiro resultante os nomes das funções (precedidas de "char*"), abrindo um parêntesis para o início dos argumentos e iniciando o estado "TEMPLATE".
+    
+    \item \textbf{\textless TEMPLATE\textgreater\textbackslash{}[} -- Identifica o início da codificação dos argumentos das funções (e.g. "ele" na função "Fli" da \textbf{Figura 1}). Inicia-se o estado "PARAMS".
+    
+    \item \textbf{\textless TEMPLATE\textgreater\textbackslash{}\}\textbackslash{}\}} -- Identifica o fim de uma função do \emph{template}. Quando um \emph{template} termina procede-se à escrita de todas as variáveis passadas como parâmetro à função gerada. De seguida, procede-se à escrita do corpo da função associando, sempre que necessário, uma variável a uma certa instrução dessa função. No final, todas as variáveis auxialiares são igualdas a zero e o programa volta ao estado "INITIAL".
+    
+    \item \textbf{\textless TEMPLATE\textgreater\^{}[ \textbackslash{}t]*[a-zA-Z0-9\textless\textgreater\,\,/]+} -- Serve para extrair uma linha de um \emph{template}.
+    
+    \item \textbf{\textless TEMPLATE\textgreater[ \textbackslash{}t]*[a-zA-Z0-9\textless\textgreater\,\,/]+\textdollar{}} -- Serva para extrair o conteúdo de uma linha de um \emph{template} após o processamento de uma variável ou de um \emph{map}. Neste caso, verifca-se o valor da varíavel \emph{mapMode}. Se o valor de \emph{mapMode} for igual a um, então isso quer dizer que se processou um \emph{map} nesta linha. Caso contrário foi processada uma variável. Em ambos os casos armazena-se a linha de texto lida num \emph{array}. Se o valor de \emph{mapMode} for igual a zero, associa-se a linha processada ao nome da variável lida. 
+    
+    \item \textbf{\textless TEMPLATE\textgreater[ \textbackslash{}t]*[a-zA-Z0-9\textless\textgreater\,/]+} -- Serve para extrair uma linha de um \emph{template}.
+    
+    \item \textbf{\textless PARAMS\textgreater "\%"} -- Identifica o início de uma variável (e.g. "tit" na \textbf{Figura 1}). Inicia-se o estado "VARS".
+    
+    \item \textbf{\textless VARS\textgreater "\%]"} -- Identifica o fim da codificação de uma variável. Volta-se a iniciar o estado "TEMPLATE".
+    
+    \item \textbf{\textless VARS\textgreater "MAP"} -- Identifica o início da codificação de um map. Aciona-se a flag \emph{mapMode}, guarda-se a linha de início do \emph{map} em \emph{mapLine} e inicia-se o estado "MAP".
+    
+    \item \textbf{\textless VARS\textgreater [a-zA-Z]+} -- Serve para extrair o nome das variáveis. Um nome de uma variável apenas é guardado no \emph{array} caso não exista.
+    
+    \item \textbf{\textless MAP\textgreater "\%]"} -- Identifica o fim da codificação de um map. Volta-se a iniciar o estado "TEMPLATE".
+    
+    \item \textbf{\textless MAP\textgreater [a-zA-Z ]+} -- Serve para extrair o nome dos parâmetros de um map.
+    
+    \item \textbf{.\textvert{}\textbackslash{}n} -- Todos os restantes carateres (incluindo \textbackslash{}n), são escritos no ficheiro resultante.
+\end{itemize}
+
+
+\subsection{Estrutura de Dados Globais}
+
+Neste exercício foi utilizado um \emph{array} de {strings} para se armazenarem todas as linhas de texto provenientes de um \emph{template}, bem como uma variável auxiliar para armazenar o seu tamanho. Com o uso desta estrutura de dados conseguiu-se, facilmente, armazenar todas as linhas de todos os \emph{templates} de um ficheiro num modo sequencial.
+
+De modo a tratar das variáveis associadas a um \emph{template}, os nomes destas foram também guardados num \emph{array} de \emph{strings}. Foi também utilizada uma variável auxiliar que guarda do tamanho deste \emph{array}.
+
+Tendo como recurso a biblioteca \emph{glib} usou-se uma estrutura do tipo \emph{GTree} para se efetuar a associação entre uma linha de texto qualquer e uma variável presente nessa mesma linha.
+
+Finalmente, para o tratamento de \emph{maps} recorreu-se a três variáveis do tipo \emph{string}, para armazenar o nome da função, o tamanho da lista e o nome da lista usados num \emph{map}.
+
+
+\subsection{Filtro de Texto}
+
+\begin{lstlisting}[language=C]
+%option noyywrap
+%x TEMPLATE PARAMS VARS MAP
+
+%{
+	#include <glib.h>
+
+
+	#define MAX_LINES 10000
+	#define MAX_VARS  20
+
+
+	gint comp(gconstpointer, gconstpointer);
+
+
+	FILE* fp;	
+	int array_size = 0;
+	char* array[MAX_LINES];
+	char* line = NULL;
+	char* var = NULL;
+	GTree* tree;
+
+	int vars_size = 0;
+	char* vars[MAX_VARS];
+
+	int mapMode = 0;
+	int mapLine = 0; 
+	char* functionName = "";
+	char* listLength = ""; 
+	char* list = "";
+%}
+
+%%
+
+<*>^[a-zA-Z]+\=\{\{ {
+	int i = 0;
+
+	fprintf(fp, "char* ");
+
+	for (; i < yyleng && yytext[i] != '='; i++) {
+		fprintf(fp, "%c", yytext[i]);
+	}
+
+	fprintf(fp, "(");
+
+	BEGIN TEMPLATE;
+}
+
+<TEMPLATE>\[ {
+	BEGIN PARAMS;
+}
+
+<TEMPLATE>\}\} {
+	int i = 0;
+	gchar* auxVar = "";
+
+	for (; i < vars_size; i++) {
+		if (i > 0) {
+			fprintf(fp, ", ");
+		}
+
+		fprintf(fp, "char* ");
+		fprintf(fp, "%s", vars[i]);	
+	}
+
+	if (mapMode == 1) {
+		if (i > 0) {
+			fprintf(fp, ", int %s,", listLength);
+		}
+		else {
+			fprintf(fp, "int %s,", listLength);
+		}
+
+		fprintf(fp, " char* %s[]", list);		
+	}
+
+	fprintf(fp, ")\n{\n");
+	fprintf(fp, "\tchar BUF[10000];\n\tint j = 0;\n");
+	
+	for (i = 0; i < array_size; i++) {
+		if (mapMode == 1 && mapLine == i) {
+			fprintf(fp, "\tj += sprintf(BUF + j, \"%s\");\n", array[i]);
+			fprintf(fp,
+                    "\tfor(int i = 0; i < %s; i++) {
+                    \n\t\tj += sprintf(BUF + j, \"%%s\", %s(%s[i])); \n\t}\n",
+                    listLength,
+                    functionName,
+                    list);  
+			fprintf(fp, "\tj += sprintf(BUF + j, \"%s\\n\");\n", array[i + 1]);
+		}
+		else {
+			auxVar = (gchar*)g_tree_lookup(tree, array[i]);
+		
+			if (auxVar != NULL && strcmp(auxVar, "") != 0) {
+				fprintf(fp, 
+                        "\tj += sprintf(BUF + j, \"%s\\n\", %s);\n",
+                        array[i],
+                        auxVar);
+			}
+			else if (auxVar) {
+				fprintf(fp, "\tj += sprintf(BUF + j, \"%s\\n\");\n", array[i]);
+			}
+		}
+	}
+
+	fprintf(fp, "\treturn strdup(BUF);\n}\n");
+	
+	array_size = 0;
+	vars_size = 0;
+	mapMode = 0;
+	mapLine = 0;
+	
+	BEGIN INITIAL;
+}
+
+<TEMPLATE>^[ \t]*[a-zA-Z0-9<> /]+ {
+	if (line == NULL) {
+		line = strdup(yytext);
+	}
+	else {
+		strcat(line, yytext);
+	}
+}
+
+<TEMPLATE>[ \t]*[a-zA-Z0-9<> /]+$ {
+	int auxMap = 0;
+
+	if (line != NULL && mapMode != 1) {
+		strcat(line, "%s");
+		strcat(line, yytext);
+		array[array_size++] = strdup(line);
+	}
+	else if (line != NULL && mapMode == 1) {
+		auxMap = 1;
+		
+		if (var != NULL) {
+			var[0] = '\0';
+		}
+
+		array[array_size++] = strdup(line);
+		array[array_size++] = strdup(yytext);
+	}
+	else if (line == NULL) {
+		if (var != NULL) {
+			var[0] = '\0';
+		}
+
+		array[array_size++] = strdup(yytext);
+	}	
+
+	if (auxMap != 1) {
+		if (var == NULL) {
+			g_tree_insert(tree, array[array_size - 1], "");
+		}
+		else {
+			g_tree_insert(tree, array[array_size - 1], strdup(var));
+		}
+	}
+
+	line = NULL;
+}
+
+<TEMPLATE>[ \t]*[a-zA-Z0-9<> /]+ {
+	if (line == NULL) {
+		line = strdup(yytext);
+	}
+	else {
+		strcat(line, yytext);
+	}
+}
+
+<PARAMS>"% " {
+	BEGIN VARS;
+} 
+
+<VARS>"%]" {
+	BEGIN TEMPLATE;
+}
+
+<VARS>"MAP" { 
+	mapMode = 1;
+	mapLine = array_size;
+	BEGIN MAP;
+}
+
+<VARS>[a-zA-Z]+ {
+	int i = 0;
+	int existVar = 0;
+
+	var = strdup(yytext);
+
+	for (; i < vars_size; i++) {
+		if (strcmp(var, vars[i]) == 0) {
+			existVar = 1;
+			break;
+		}
+	}
+
+	if (existVar == 0) {
+		vars[vars_size++] = strdup(var); 
+	}
+}
+
+<MAP>"%]" {
+	BEGIN TEMPLATE;
+}
+
+<MAP>[a-zA-Z ]+ {
+	functionName = strdup(strtok(yytext, " "));   
+	listLength = strdup(strtok(NULL, " "));
+	list = strdup(strtok(NULL, " "));
+}
+
+.|\n { fprintf(fp, "%s", yytext);}
+
+%%
+
+gint comp(gconstpointer a, gconstpointer b)
+{
+	return (strcmp(a, b));
+}
+
+
+int main(int argc, char** argv)
+{
+	char* output;
+
+	tree = g_tree_new(comp);
+
+	if (argc == 2) {
+		yyin = fopen(argv[1], "r");
+
+		output = strtok(argv[1], ".");
+		strcat(output, ".c");
+		fp = fopen(output, "w");
+
+		yylex();
+	}
+
+	fclose(fp);
+	g_tree_destroy(tree);	
+
+	return 0;
+}
+
+\end{lstlisting}
+
+
+\newpage
+\subsection{Resultado da Execução}
+
+A partir do template que é apresentado na \textbf{Figura 1} -- e através da execução do programa em \emph{Flex} --, foi gerado o código em C correspondente, presente na \textbf{Figura 2}. 
+
+\begin{center}
+    \includegraphics[scale=0.6]{exemplo1}
+    \caption{\textbf{Figura 1} - Template embebido em linguagem C}
+\end{center}
+
+\begin{center}
+    \includegraphics[scale=0.5]{resultado1}
+    \caption{\textbf{Figura 2} - Código C resultante}
+\end{center}
+
+\newpage
+A \textbf{Figura 3} apresenta outro template de exemplo e o respetivo resultado (\textbf{Figura 4}).
+
+\begin{center}
+    \includegraphics[scale=0.6]{exemplo2}
+    \newline
+    \caption{\textbf{Figura 3} - Template embebido em linguagem C}
+\end{center}
+
+\begin{center}
+    \includegraphics[scale=0.7]{resultado2}
+    \caption{\textbf{Figura 4} - Código C resultante}
+\end{center}
+
+
+
+\newpage
+\section{Conclusão}
+
+Com a realização deste trabalho, pudemos pôr em prática os conceitos adquiridos nas aulas teórico-práticas sobre a ferramenta \emph{Flex}.
+
+Percebemos a importância do uso das expressões regulares para descrever padrões de frases, de forma a podermos pegar num ficheiro e obtermos as informações que necessitamos.
+
+Além disso, aprendemos também a desenvolver processadores de linguagem que nos permitiram, a partir das informações obtidas anteriormente, filtrar e modificar textos.
+
+Assim sendo, em retrospetiva, achamos que a realização deste segundo trabalho prático foi bastante enriquecedora.
+
+\end{document}

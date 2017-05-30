@@ -1,0 +1,38 @@
+<scene> 
+	<translate y=-0.3 z=-3/>
+	<scale x=0.1 y=0.1 z=0.1/>
+	<group>
+		<rotate axisY=1 angle=90/>
+		<models>
+			<model file="demos/cockpit.3d" texture="demos/cockpit.jpg"  emisr=1 emisg=1 emisb=1/> 
+		</models>
+	</group>
+	<group>
+		<translate x=1/>
+		<models>
+			<model file="demos/wing.3d" texture="demos/wing.jpg" emisr=1 emisg=1 emisb=1/> 
+		</models>
+	</group>
+	<group>
+		<translate x=8.7/>
+		<models>
+			<model file="demos/wing.3d" texture="demos/wing.jpg" emisr=1 emisg=1 emisb=1/> 
+		</models>
+	</group>
+	<group>
+		<translate x=-1/>
+		<rotate axisz=1 angle=90/>
+		<scale x=0.05 y=0.2 z=0.3/>
+		<models>
+			<model file="demos/cone.3d" texture="demos/cockpit.jpg" emisr=1 emisg=1 emisb=1/>
+		</models>
+	</group>
+	<group>
+		<translate x=0.8/>
+		<rotate axisz=1 angle=-90/>
+		<scale x=0.05 y=0.2 z=0.3/>
+		<models>
+			<model file="demos/cone.3d" texture="demos/cockpit.jpg" emisr=1 emisg=1 emisb=1/>
+		</models>
+	</group>
+</scene>

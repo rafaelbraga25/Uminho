@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "A instalar diretorias"
+
+mkdir -m 777 -p "$HOME/.Backup"
+mkdir -m 700 -p "$HOME/.Backup/data"
+mkdir -m 700 -p "$HOME/.Backup/metadata"
+
+echo "A compilar o Servidor e o Cliente."
+
+make install
+
+echo "A instalação terminou."
+
+exit 0

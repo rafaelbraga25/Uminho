@@ -1,0 +1,5 @@
+<scene>
+	<models>
+		<model file="demos/teapot.3d"/>
+	</models>
+</scene>

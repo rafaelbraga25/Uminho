@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <string.h>
+
+Fli={{<li> [% ele %] </li>
+}}
+
+Fhtml={{<html>
+	<head><title>[% tit %]</title></head>
+<body>
+	<h1>[% tit %]</h1>
+	<ul>[% MAP Fli comp items %]</ul>
+</body>
+</html>
+}}
+
+int main(){
+	char * a[]={"expressões regulares","parsers","compiladores"};
+	printf("%s\n",Fhtml("Conteudo programático", 3, a));
+}
