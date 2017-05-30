@@ -1,0 +1,17 @@
+
+		1M			3M			5M
+q1	   9.51690        30.75801       51.01363
+q8	   0.05083         0.14556        0.23114
+q9      0.00002         0.00003        0.00003
+q10     0.49042         0.64064        0.65005
+q11     0.00016         0.00038        0.00042
+q12     0.03090         0.02257        0.02084
+
+
+
+
+A tabela apresentada acima representa a média dos nossos três computadores de cada um dos tempos de execução das queries 1, 8, 9, 10, 11 e 12. A tabela mostra também a diferença dos tempos destas queries para os ficheiros de Vendas_1M.txt, Vendas_3M.txt e Vendas_5M.txt. A query 1 representa o carregamento e tratamento dos ficheiros. Obeservando a tabela verifica-se que o tratamento e carregamento de um milhão de vendas demora cerca de 10 segundos. 
+Das queries 8 a 12 a mais demorada é a query 10. O tempo de execução desta query aumenta significativamente com o processamento de 3 milhões de vendas comparativamente ao processamento de 1 milhão de vendas. No entanto, o tempo da query 10 é praticamente idêntico para o ficheiro de 3 milhões e para o ficheiro de 5 milhões de vendas. O tempo da query 8 aumenta progressivamente com a leitura de ficheiros com um número superior de vendas. Já as queries 9, 11 e 12 mantêm um tempo praticamente constante independentemente do número de vendas lidas.
+
+
+
