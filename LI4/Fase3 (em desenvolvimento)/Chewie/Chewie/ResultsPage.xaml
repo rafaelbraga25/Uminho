@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="Chewie.ResultsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Chewie"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".15*" MinHeight="35" MaxHeight="45"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#3F3F3F" BorderBrush="#3F3F3F">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".005*"/>
+                <ColumnDefinition Width=".33*"/>
+                <ColumnDefinition Width=".33*"/>
+                <ColumnDefinition Width=".33*"/>
+                <ColumnDefinition Width=".005*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Style="{StaticResource BarButton}" Foreground="#FFB3B3B3" Background="Transparent" BorderBrush="#FF3F3F3F" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0,0,0,3" PointerEntered="barButtonPointerEntered" PointerExited="barButtonPointerExited" Tapped="homeButtonTapped">
+                <SymbolIcon Symbol="Home"/>
+            </Button>
+
+            <Button Grid.Column="2" Style="{StaticResource BarButton}" Foreground="#FFB3B3B3" Background="Transparent" BorderBrush="#FF3F3F3F" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Uid="SugestionsXAML" PointerEntered="barButtonPointerEntered" PointerExited="barButtonPointerExited" Tapped="sugestionsButtonTapped" BorderThickness="0,0,0,3"/>
+
+            <Button Grid.Column="3" Style="{StaticResource BarButton}" Foreground="#FFB3B3B3" Background="Transparent" BorderBrush="#FF3F3F3F" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Uid="HistoryXAML" PointerEntered="barButtonPointerEntered" PointerExited="barButtonPointerExited" BorderThickness="0,0,0,3"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="searchTextBox" BorderThickness="1" Grid.Column="0" BorderBrush="#FFB3B3B3" Foreground="#FFB3B3B3" FontSize="14" x:Uid="SearchXAML" GotFocus="searchBoxGotFocus" LostFocus="searchBoxLostFocus" KeyDown="searchBoxKeyDown"/>
+
+            <Button Grid.Column="1" BorderBrush="#FFB3B3B3" BorderThickness="1" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PointerEntered="voiceButtonPointerEntered" PointerExited="voiceButtonPointerExited" Tapped="voiceButtonTapped">
+                <SymbolIcon Name="voiceSearchSymbol" Symbol="Microphone" Width="20" HorizontalAlignment="Center" Foreground="#FFB3B3B3"/>
+            </Button>
+            <Button Grid.Column="2" BorderBrush="#FFB3B3B3" BorderThickness="1" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PointerEntered="optionsButtonPointerEntered" PointerExited="optionsButtonPointerExited" Tapped="optionsButtonTapped">
+                <SymbolIcon Name="optionsSearchSymbol" Symbol="ShowBcc" Width="20" HorizontalAlignment="Center" Foreground="#FFB3B3B3"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <ScrollViewer Name="resultsPageScrollViewer" Style="{StaticResource ChewieScrollViwer}" VerticalScrollBarVisibility="Hidden" ViewChanged="scrollViewerViewChanged">
+                <StackPanel Name="resultsPanel">
+                    <Button HorizontalAlignment="Stretch" Height="1500"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Canvas Name="preferencesWindow" Opacity="0.9" Margin="0,50,0,0" Background="#FF3F3F3F" MinHeight="100" >
+        </Canvas>
+    </Grid>
+</Page>

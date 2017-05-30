@@ -1,0 +1,103 @@
+﻿<Page
+    x:Class="Chewie.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Chewie"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="LoginButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
+                            <Viewbox>
+                                <ContentPresenter TextWrapping="Wrap" Content="{TemplateBinding Content}" Padding="5"/>
+                            </Viewbox>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".10*"/>
+            <RowDefinition Height=".20*"/>
+            <RowDefinition Height=".10*"/>
+            <RowDefinition Height=".14*"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height=".18*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height=".05*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Image Source="Assets/logo.png"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".15*"/>
+                <ColumnDefinition Width=".7*"/>
+                <ColumnDefinition Width=".15*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Image Source="Assets/chewie.png" Grid.Column="1"/>    
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+        
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".15*"/>
+                <ColumnDefinition Width=".7*"/>
+                <ColumnDefinition Width=".15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Name="userTextBoxBorder" Grid.Column="1" BorderBrush="#FFB3B3B3" BorderThickness="1" CornerRadius="5,5,0,0">
+                <TextBox Name="loginUserBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#B3B3B3" BorderThickness="0" FontSize="14" GotFocus="userTextBoxGotFocus" LostFocus="userTextBoxLostFocus" TextChanged="loginTextBoxTextChanged" x:Uid="UserNameXAML"/>
+            </Border>
+        </Grid>
+        
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".15*"/>
+                <ColumnDefinition Width=".7*"/>
+                <ColumnDefinition Width=".15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Name="passwordTextBoxBorder" Grid.Column="1" BorderBrush="#FFB3B3B3" BorderThickness="1" CornerRadius="0,0,5,5">
+                <PasswordBox Name="loginPasswordBox" HorizontalAlignment="Stretch" Foreground="#B3B3B3" BorderThickness="0" FontSize="14" GotFocus="passwordTextBoxGotFocus" LostFocus="passwordTextBoxLostFocus" x:Uid="DefaultPasswordXAML" PasswordChanged="loginTextBoxTextChanged"/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".15*"/>
+                <ColumnDefinition Width=".7*"/>
+                <ColumnDefinition Width=".15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="InitSessionButton" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFB3B3B3" BorderBrush="#FFB3B3B3" Foreground="#FFE6E6E6" BorderThickness="1" Style="{StaticResource LoginButton}" x:Uid="InitSessionXAML" IsEnabled="False" Tapped="initSessionButtonTapped"/>
+        </Grid>
+
+        <Grid Grid.Row="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".15*"/>
+                <ColumnDefinition Width=".7*"/>
+                <ColumnDefinition Width=".15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="#FFB3B3B3" BorderThickness="1" Foreground="#FFB3B3B3" Style="{StaticResource LoginButton}" x:Uid="SignUpXAML" Background="{x:Null}" PointerEntered="registerPointerEntered" PointerExited="registerPointerExited"/>
+        </Grid>
+        
+    </Grid>
+</Page>
