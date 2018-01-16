@@ -1,0 +1,6 @@
+loginDS
+modelo de dominio
+adicionarAlunoDS
+espAlocarCapacidade
+trocarTurnoDS- mudar excel trocar turno
+trocarTurnoDSprof
