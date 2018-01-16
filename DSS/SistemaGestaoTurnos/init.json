@@ -1,0 +1,198 @@
+{
+	"cus": [
+		{
+			"name": "AlgC",
+			"year": "2",
+			"semester": "1",
+			"shifts": [
+				{
+					"name": "TP1",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "2",
+							"bHour": "9",
+							"eHour": "11"
+						}
+					] 
+				},
+				{
+					"name": "TP2",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "4",
+							"bHour": "14",
+							"eHour": "16"
+						}
+					] 
+				},
+				{
+					"name": "TP3",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "6",
+							"bHour": "11",
+							"eHour": "13"
+						}
+					] 
+				}
+			]
+		},
+		{
+			"name": "Calc",
+			"year": "1",
+			"semester": "1",
+			"shifts": [
+				{
+					"name": "TP1",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "3",
+							"bHour": "9",
+							"eHour": "11"
+						}
+					] 
+				},
+				{
+					"name": "TP2",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "5",
+							"bHour": "16",
+							"eHour": "18"
+						}
+					] 
+				},
+				{
+					"name": "TP3",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "6",
+							"bHour": "11",
+							"eHour": "13"
+						}
+					] 
+				}
+			]
+		},
+		{
+			"name": "CD",
+			"year": "2",
+			"semester": "1",
+			"shifts": [
+				{
+					"name": "TP1",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "2",
+							"bHour": "11",
+							"eHour": "13"
+						}
+					] 
+				},
+				{
+					"name": "TP2",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "4",
+							"bHour": "11",
+							"eHour": "13"
+						}
+					] 
+				},
+				{
+					"name": "TP3",
+					"teo": "0",
+					"capacity": "20",
+					"classes": "10",
+					"schedules": [
+						{
+							"weekDay": "6",
+							"bHour": "11",
+							"eHour": "13"
+						}
+					] 
+				}
+			]
+		}
+	],
+	"teachers": [
+		{
+			"username": "p101",
+			"password": "pass",
+			"cuNames": [
+				{
+					"name": "Calc"
+				}
+			]
+		},
+		{
+			"username": "p201",
+			"password": "pass",
+			"cuNames": [
+				{
+					"name": "AlgC"
+				}
+			]
+		},
+		{
+			"username": "p202",
+			"password": "pass",
+			"cuNames": [
+				{
+					"name": "CD"
+				}
+			]
+		}
+	],
+	"students": [
+		{
+			"username": "a61799",
+			"password": "",
+			"ws": "0"
+		},
+		{
+			"username": "a79707",
+			"password": "pass",
+			"ws": "1"
+		},
+		{
+			"username": "a80001",
+			"password": "pass",
+			"ws": "0"
+		},
+		{
+			"username": "a71799",
+			"password": "pass",
+			"ws": "1"
+		},
+		{
+			"username": "a61545",
+			"password": "pass",
+			"ws": "0"
+		}
+	]
+}
