@@ -1,0 +1,160 @@
+CREATE INDEX ON :Pessoa(id);
+CREATE INDEX ON :Foto(pessoaID);
+CREATE INDEX ON :Evento(id);
+CREATE INDEX ON :Organizacao(id);
+CREATE INDEX ON :Contacto(orgID);
+CREATE INDEX ON :Edicao(eventoID);
+CREATE INDEX ON :Edicao(nEdicao);
+
+
+#Pessoas 
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///persons.csv" AS line
+CREATE (p:Pessoa {id: toInteger(line.id), email: line.email, 
+	nome: line.nome, sexo: line.sexo, dataNasc: line.dataNasc});
+	
+	
+#Fotos
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///photos.csv" AS line
+CREATE (f:Foto {pessoaID: toInteger(line.pessoaID), foto: line.foto});
+
+
+#Eventos 
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///events.csv" AS line
+CREATE (e:Evento {id: toInteger(line.id), titulo: line.titulo});
+	
+
+#Edicoes
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///editions.csv" AS line
+CREATE (e:Edicao {nEdicao: toInteger(line.nEdicao), eventoID: toInteger(line.eventoID),
+	descricao: line.descricao, preco: toFloat(line.preco), 
+	lotacao: toInteger(line.lotacao), inicio: line.inicio, fim: line.fim, 
+	pais: line.pais, cidade: line.cidade, rua: line.rua, 
+	nMulheres: toInteger(line.nMulheres), nHomens: toInteger(line.nHomens),
+	menores18: toInteger(line.menores18), pessoas18_25: toInteger(line.pessoas18_25),
+	pessoas25_30: toInteger(line.pessoas25_30)});
+	
+	
+#Organizacoes
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///orgs.csv" AS line
+CREATE (o:Organizacao {id: toInteger(line.id), email: line.email,
+	nome: line.nome, pais: line.pais, cidade: line.cidade, rua: line.rua, 
+	nMulheres: toInteger(line.nMulheres), nHomens: toInteger(line.nHomens),
+	menores18: toInteger(line.menores18), pessoas18_25: toInteger(line.pessoas18_25),
+	pessoas25_30: toInteger(line.pessoas25_30)});
+
+	
+#Contactos
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///contacts.csv" AS line
+CREATE (c:Contacto {orgID: toInteger(line.orgID), contacto: line.contacto,
+	tipo: line.tipo});
+	
+
+#Relacionamento entre pessoas e fotos
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///photos.csv" AS line
+MATCH (foto:Foto {pessoaID: toInteger(line.pessoaID)})
+MATCH (pessoa:Pessoa {id: toInteger(line.pessoaID)})
+CREATE (pessoa)-[:TEM]->(foto);
+
+
+#Relacionamento entre organizacoes e contactos
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///contacts.csv" AS line
+MATCH (c:Contacto {orgID: toInteger(line.orgID)})
+MATCH (o:Organizacao {id: toInteger(line.orgID)})
+CREATE (o)-[:TEM]->(c);
+
+
+#Relacionamento entre eventos e edicoes
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///editions.csv" AS line
+MATCH (ed:Edicao {eventoID: toInteger(line.eventoID), nEdicao: toInteger(line.nEdicao)})
+MATCH (ev:Evento {id: toInteger(line.eventoID)})
+CREATE (ev)-[:TEM]->(ed);
+
+
+#Relacionamento entre organizacoes e eventos
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///orgsEvents.csv" AS line
+MATCH (o:Organizacao {id: toInteger(line.orgID)})
+MATCH (ev:Evento {id: toInteger(line.eventoID)})
+CREATE (o)-[:ORGANIZA]->(ev), (ev)-[:ORGANIZADO]->(o);
+
+
+#Relacionamento entre pessoas e edicoes
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM
+"file:///personsEditions.csv" AS line
+MATCH (p:Pessoa {id: toInteger(line.pessoaID)})
+MATCH (ed:Edicao {eventoID: toInteger(line.eventoID), nEdicao: toInteger(line.nEdicao)})
+CREATE (p)-[:VAI]->(ed), (ed)-[:RECEBE]->(p);
+
+
+
+#Apagar o que já não é necessário
+MATCH (n)
+REMOVE n.id;
+
+MATCH (n)
+remove n.eventoID;
+
+MATCH (n)
+remove n.pessoaID;
+
+MATCH (n)
+remove n.orgID;
+
+
+
+#Eventos não lotados depois da data de hoje
+MATCH (ev:Evento)-[:TEM]->(ed:Edicao)
+WHERE ed.inicio >= "2018-01-07" AND ed.nHomens + ed.nMulheres < ed.lotacao
+RETURN ev, ed;
+
+
+#Eventos que decorram numa data
+MATCH (ev:Evento)-[:TEM]->(ed:Edicao)
+WHERE split(ed.inicio, " ")[0] <= "2018-05-18" AND ed.fim >= "2018-05-18"
+RETURN ev, ed;
+
+
+#Eventos que decorram num intervalo
+MATCH (ev:Evento)-[:TEM]->(ed:Edicao)
+WHERE (split(ed.fim, " ")[0] >= "2017-10-01" AND split(ed.fim, " ")[0] <= "2018-05-31") OR
+	(split(ed.inicio, " ")[0] >= "2017-10-01" AND split(ed.inicio, " ")[0] <= "2018-05-31")
+RETURN ev, ed; 
+
+
+#Eventos numa cidade
+MATCH (ev:Evento)-[:TEM]->(ed:Edicao)
+WHERE ed.cidade = "Braga"
+RETURN ev, ed;
+
+
+#Pesquisa por evento e suas edicoes
+MATCH (ev:Evento)-[:TEM]->(ed:Edicao)
+WHERE ev.titulo CONTAINS "Noite"
+RETURN ev, ed;
+
+
+#Listar as pessoas (e as suas fotos) que vao a um evento e também as organizacoes deste
+MATCH (o:Organizacao)-[:ORGANIZA]->(ev:Evento)-[:TEM]->(ed:Edicao)
+	-[:RECEBE]->(p:Pessoa)-[:TEM]->(f:Foto)
+WHERE ev.titulo CONTAINS "Noite"
+RETURN ev, ed, p, f, o;
